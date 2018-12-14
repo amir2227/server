@@ -1,7 +1,7 @@
 /***
  * @author amir-reza abbasi
  */
-package com.javasampleapproach.jqueryboostraptable.controller;
+package com.pardis.server.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import com.javasampleapproach.jqueryboostraptable.model.Device;
-import com.javasampleapproach.jqueryboostraptable.model.RFID;
-import com.javasampleapproach.jqueryboostraptable.model.Relation;
-import com.javasampleapproach.jqueryboostraptable.model.status;
+import com.pardis.server.model.Device;
+import com.pardis.server.model.RFID;
+import com.pardis.server.model.Relation;
+import com.pardis.server.model.status;
 
 @RestController
 public class DeviceJpaResource {
