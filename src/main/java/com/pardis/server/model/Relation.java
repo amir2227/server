@@ -1,4 +1,4 @@
-package com.javasampleapproach.jqueryboostraptable.model;
+package com.pardis.server.model;
 
 
 
