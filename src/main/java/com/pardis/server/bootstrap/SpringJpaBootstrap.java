@@ -1,10 +1,10 @@
-package guru.springframework.bootstrap;
+package com.pardis.server.bootstrap;
 
-import guru.springframework.domain.Role;
-import guru.springframework.domain.User;
+import com.pardis.server.model.Role;
+import com.pardis.server.model.User;
 
-import guru.springframework.services.RoleService;
-import guru.springframework.services.UserService;
+import com.pardis.server.services.RoleService;
+import com.pardis.server.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
