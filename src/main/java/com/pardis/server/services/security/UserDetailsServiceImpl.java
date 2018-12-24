@@ -1,7 +1,7 @@
-package guru.springframework.services.security;
+package com.pardis.server.services.security;
 
-import guru.springframework.domain.User;
-import guru.springframework.services.UserService;
+import com.pardis.server.model.User;
+import com.pardis.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;
