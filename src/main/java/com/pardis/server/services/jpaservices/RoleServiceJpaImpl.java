@@ -1,16 +1,14 @@
-package guru.springframework.services.jpaservices;
+package com.pardis.server.services.jpaservices;
 
-import guru.springframework.domain.Role;
-import guru.springframework.services.RoleService;
+import com.pardis.server.model.Role;
+import com.pardis.server.services.RoleService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-/**
- * Created by jt on 12/18/15.
- */
+
 @Service
 @Profile("jpadao")
 public class RoleServiceJpaImpl extends AbstractJpaDaoService implements RoleService {
