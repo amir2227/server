@@ -1,6 +1,6 @@
-package guru.springframework.repositories;
+package com.pardis.server.repositories;
 
-import guru.springframework.domain.User;
+import com.pardis.server.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Integer>{
