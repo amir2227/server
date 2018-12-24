@@ -1,6 +1,6 @@
-package guru.springframework.services;
+package com.pardis.server.services;
 
-import guru.springframework.domain.Role;
+import com.pardis.server.model.Role;
 
 public interface RoleService extends CRUDService<Role> {
 }
