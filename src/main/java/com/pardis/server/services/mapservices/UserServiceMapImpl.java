@@ -1,9 +1,9 @@
-package guru.springframework.services.mapservices;
+package com.pardis.server.services.mapservices;
 
-import guru.springframework.domain.DomainObject;
-import guru.springframework.domain.User;
-import guru.springframework.services.UserService;
-import guru.springframework.services.security.EncryptionService;
+import com.pardis.model.DomainObject;
+import com.pardis.model.User;
+import com.pardis.server.services.UserService;
+import com.pardis.server.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
