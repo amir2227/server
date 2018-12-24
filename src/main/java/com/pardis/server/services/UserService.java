@@ -1,6 +1,6 @@
-package guru.springframework.services;
+package com.pardis.server.services;
 
-import guru.springframework.domain.User;
+import com.pardis.server.model.User;
 
 public interface UserService extends CRUDService<User> {
 
