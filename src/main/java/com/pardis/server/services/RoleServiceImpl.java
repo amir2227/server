@@ -1,8 +1,8 @@
-package guru.springframework.services;
+package com.pardis.server.services;
 
-import guru.springframework.domain.Role;
-import guru.springframework.repositories.RoleRepository;
-import guru.springframework.services.RoleService;
+import com.pardis.server.model.Role;
+import com.pardis.server.repositories.RoleRepository;
+import com.pardis.server.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
