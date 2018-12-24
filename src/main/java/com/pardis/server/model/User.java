@@ -1,4 +1,4 @@
-package guru.springframework.domain;
+package com.pardis.server.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
