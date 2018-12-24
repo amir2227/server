@@ -1,12 +1,10 @@
-package guru.springframework.services.mapservices;
+package com.pardis.server.services.mapservices;
 
-import guru.springframework.domain.DomainObject;
+import com.pardis.server.model.DomainObject;
 
 import java.util.*;
 
-/**
- * Created by jt on 11/14/15.
- */
+
 public abstract class AbstractMapService  {
     protected Map<Integer, DomainObject> domainMap;
 
