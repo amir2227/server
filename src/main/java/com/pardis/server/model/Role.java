@@ -1,6 +1,6 @@
-package guru.springframework.domain;
+package com.pardis.server.model;
 
-import guru.springframework.domain.AbstractDomainClass;
+import com.pardis.server.model.AbstractDomainClass;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
