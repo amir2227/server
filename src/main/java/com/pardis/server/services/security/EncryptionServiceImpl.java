@@ -1,4 +1,4 @@
-package guru.springframework.services.security;
+package com.pardis.server.services.security;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
