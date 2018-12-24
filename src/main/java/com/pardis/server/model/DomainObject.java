@@ -1,8 +1,6 @@
 package com.pardis.server.model;
 
-/**
- * Created by jt on 11/14/15.
- */
+
 public interface DomainObject {
 
     Integer getId();
