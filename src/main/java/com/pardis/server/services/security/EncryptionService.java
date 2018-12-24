@@ -1,4 +1,4 @@
-package guru.springframework.services.security;
+package com.pardis.server.services.security;
 
 public interface EncryptionService {
     String encryptString(String input);
