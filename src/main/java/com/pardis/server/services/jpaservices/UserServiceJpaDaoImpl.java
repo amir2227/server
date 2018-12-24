@@ -1,8 +1,8 @@
-package guru.springframework.services.jpaservices;
+package com.pardis.server.services.jpaservices;
 
-import guru.springframework.domain.User;
-import guru.springframework.services.UserService;
-import guru.springframework.services.security.EncryptionService;
+import com.pardis.server.model.User;
+import com.pardis.server.services.UserService;
+import com.pardis.server.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-/**
- * Created by jt on 12/14/15.
- */
+
 @Service
 @Profile("jpadao")
 public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements UserService {
