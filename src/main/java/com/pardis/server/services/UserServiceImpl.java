@@ -1,6 +1,6 @@
-package guru.springframework.services;
+package com.pardis.server.services;
 
-import guru.springframework.domain.User;
+import com.pardis.server.model.User;
 
 import guru.springframework.repositories.UserRepository;
 import guru.springframework.services.UserService;
