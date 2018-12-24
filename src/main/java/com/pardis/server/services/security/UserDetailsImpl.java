@@ -1,4 +1,4 @@
-package guru.springframework.services.security;
+package com.pardis.server.services.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
