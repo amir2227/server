@@ -3,9 +3,7 @@ package com.pardis.server.model;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by jt on 12/16/15.
- */
+
 @MappedSuperclass
 public class AbstractDomainClass implements DomainObject {
 
