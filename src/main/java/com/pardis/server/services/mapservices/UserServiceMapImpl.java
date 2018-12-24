@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-/**
- * Created by jt on 12/14/15.
- */
+
 @Service
 @Profile("map")
 public class UserServiceMapImpl extends AbstractMapService implements UserService {
