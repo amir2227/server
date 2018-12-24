@@ -9,9 +9,7 @@ import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jt on 12/18/15.
- */
+
 @Entity
 public class Role extends AbstractDomainClass {
 
