@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jt on 12/14/15.
- */
+
 @Entity
 public class User extends AbstractDomainClass  {
 
