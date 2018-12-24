@@ -1,4 +1,4 @@
-package guru.springframework.config;
+package com.pardis.server.config;
 
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.context.annotation.Bean;
