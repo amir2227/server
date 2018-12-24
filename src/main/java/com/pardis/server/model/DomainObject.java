@@ -1,4 +1,4 @@
-package guru.springframework.domain;
+package com.pardis.server.model;
 
 /**
  * Created by jt on 11/14/15.
