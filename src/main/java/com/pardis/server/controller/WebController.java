@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pardis.server.model.Device;
@@ -33,22 +35,34 @@ public class WebController {
 	
 	
 	//return index.html 
-	@SuppressWarnings("deprecation")
-	@GetMapping(value="/")
+	    @RequestMapping("/")
+	    String index(){
+	        return "index";
+	    }
+	
+	@GetMapping(value="/device")
     public String homepage(Model model,@RequestParam(defaultValue="0") int page){
 		//data have devices information
 		model.addAttribute("rel",relationRepo.findAll(new PageRequest(page,400)));
 		model.addAttribute("data",deviceRepo.findAll(new PageRequest(page, 4)));
 		model.addAttribute("currentPage", page);
 		 
-        return "index";
+        return "dev";
     }
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+   	 public String login(){
+         return "login";
+    }
+
+
 	//save device body into the database
 	@PostMapping("/saveDevice")
 	public String save(Device d) {
 		deviceRepo.save(d);
-		return "redirect:/";
+		return "redirect:/device";
 	}
+	
 	
 	@PostMapping("/saveRelation")
 	public String saveRelation(Relation r) {
@@ -57,13 +71,13 @@ public class WebController {
 		Device de = d.get(0);
 		r.setDeviceId(de.getId());
 		relationRepo.save(r);
-		return "redirect:/";
+		return "redirect:/device";
 	}
 	//delete device by id
 	@GetMapping("/delete")
 	public String deleteDevice(Integer id) {
 	deviceRepo.deleteById(id);
-	return "redirect:/";
+	return "redirect:/device";
 	}
 	
 	@GetMapping("/findOneDevice")
