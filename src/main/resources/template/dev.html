@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+ 
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+      <title>Pardis IOT</title>
+         <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+    <link rel="stylesheet" href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css" />
+
+
+
+    <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script>
+
+
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script type="text/javascript" th:src="@{js/main.js}" src="../static/js/main.js"></script>
+	  <script type="text/javascript" th:src="@{js/jqueryAjaxGet.js}" src="../static/js/jqueryAjaxGet.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
+    
+      
+    
+<script>
+$(function () {
+        $("#chkPassport").click(function () {
+            if ($(this).is(":checked")) {
+                $("#dvPassport").show();
+                $("#AddPassport").hide();
+            } else {
+                $("#dvPassport").hide();
+                $("#AddPassport").show();
+            }
+        });
+    });
+
+</script>
+
+
+</head>
+
+<body background="bgimage.jpg"  style="margin-left: 0" >
+
+<!--tabs-->
+<div class="row" >
+
+    <div class="sidebar col-xs-12 col-sm-12 col-md-2 col-lg-2">
+    <div class="container1">
+        <div class="profile-userpic">
+
+            <img src="logo.jpg" class="img-responsive" alt="" />
+
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+               Amir Reza Abbassi
+            </div>
+            <div class="profile-usertitle-job">
+                <i class="fas fa-user-alt"></i>
+                             <form class="form-horizontal" th:action="@{/logout}" method="post">
+        <div class="form-group">
+            
+            <div class="col-sm-2" style="padding-top: 30px;">
+                <input  type="submit" value="Sign Out"/>
+            </div>
+        </div>
+    </form>
+            </div>
+        </div>
+        <ul class="nav nav-pills nav-stacked" role="tablist" >
+        <li class="active"><a href="#tabs-1" role="tab" data-toggle="pill">
+            <i class="fas fa-wrench"></i> &nbsp;&nbsp;&nbsp;
+            devices</a>
+        </li>
+        <li><a href="#tabs-2" role="tab" data-toggle="pill">
+            <i class="fas fa-history"></i> &nbsp;&nbsp;&nbsp;
+            scenarios</a>
+        </li>
+        </ul>
+    </div>
+    </div>
+
+
+    <div class="col-12 col-xs-12 col-sm-8 col-md-5 col-lg-6  tab-content" style="padding-left:2%;padding-top: 5%;">
+            <div class="container tab-pane active" id="tabs-1"  >
+
+            <font color="#FFFFFF">
+                <h1>Device Table</h1>
+            </font>
+            <font color="#FFFFFF">
+                <div class="card">
+                    <div class="card-block">
+                        <table  class="table " style="text-align: center">
+                            <thead>
+                            <tr style="text-align: center">
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="device :${data.content}">
+                                <td th:text="${device.id}"></td>
+                                <td th:text="${device.name}"></td>
+                                <td th:text="${device.location}"></td>
+
+                                <td>
+
+
+                                    <a th:href="@{findOneDevice/(id=${device.id})}" class="btn btn-labeled btn-default eBtn"><span class="btn-label"><i class="far fa-edit fa-1x"></i></span> Edit</a>
+                                    <a th:href="@{delete/(id=${device.id})}" class="btn btn-labeled btn-danger delBtn"><span class="btn-label"><i class="far fa-trash-alt fa-1x"></i></span>Delete</a>
+                                    <a th:href="@{post/(id=${device.id})}" class="btn btn-labeled btn-primary viBtn" ><span class="btn-label"><i class="far fa-envelope-open"></i></span>Open</a>
+
+
+
+                                    <a th:href="${device.id}" class="btn btn-labeled btn-success seBtn"><span class="btn-label"><i class="fab fa-telegram-plane"></i></span>Send</a>
+
+                               <!--     <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <div class="handle"></div>
+                                    </button> -->
+
+                                </td>
+
+                            </tr>
+<br />
+                            </tbody>
+                        </table>
+
+                        <hr/>
+
+
+
+
+
+
+                       
+
+
+
+
+                    </div>
+                </div>
+            </font>
+                <button class="btn btn-default nBtn" style="margin-left: 65%">add new device</button>
+
+                <div class="myForm" style="background-color:lightblue">
+                <form th:action="@{/saveDevice}" method="post">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="jalkhflka">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <label for="id" class="form-control-label">ID:</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name" class="form-control-label">Name:</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="location" class="form-control-label">Location:</label>
+                                        <input type="text" class="form-control" id="location" name="location" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type" class="form-control-label">Type:</label>
+                                        <select id="type" class="form-control" name="type" >
+                                            <option  value="RFID">RFID</option>
+                                            <option id="temp" value="Temp" >Temp And Hum</option>
+                                            <option  value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="role" class="form-control-label">role:</label>
+                                        <select id="role" class="form-control" name="role" >
+                                            <option  value="1">Operator</option>
+                                            <option id="temp" value="0" >Sensor</option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="col-lg-8 tab-pane" id="tabs-2"  >
+
+            <button class="btn btn-succes rBtn">Scenarios</button>
+            
+                <form th:action="@{/saveRelation}" method="post" >
+
+                    <h2>Make a scenario</h2>
+                    <div class="form-group">
+                        <label for="id" class="form-control-label">ID:</label>
+                        <input type="text" class="form-control" id="id" name="id" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sensorName" class="form-control-label">Device Name:</label>
+                        <input type="text" class="form-control" id="sensorName" name="sensorName" placeholder="Enter the sensor device name" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="connector" class="form-control-label">Connect to:</label>
+                        <input type="text" class="form-control" id="connector" name="connector" placeholder="Enter the operator device name" value="" />
+                    </div>
+					
+					
+					<label for="chkPassport">
+    <input type="checkbox" id="chkPassport" />
+    Do you use temp and hum sensor?
+</label>
+<hr />
+<div class="form-group" id="dvPassport" style="display: none">
+ 
+ <label for="degree" class="form-control-label">Degree:</label>
+            
+              <select id="deg" name="deg" style="color: black" >
+    			<option  value="1">More</option>
+    			<option  value="0">Less</option>
+			</select>
+		
+         than  <input type="text" class="form-control" id="degree" name="degree" placeholder="Enter your limit degree" value="" />
+ 
+</div>
+<div id="AddPassport">
+    Click Save
+</div>
+					
+					
+</form>					
+
+        <input type="submit" class="btn btn-primary" value="save" style="float: right;" />
+    </div>
+
+
+</div>
+
+
+
+ 	<!--forms-->
+<div class="tblForm" >
+<form action="@{/post}" method="get">
+<div class="modal fade bd-example-modal-lg" id="tblmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+   
+   
+   <div class="card">
+		<div class="card-block">
+			<table  class="table table-hover"  style="color: black">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Value</th>
+                    </tr>
+				</thead>
+				<tbody>
+				<tr >
+				<td id="poid"></td>
+				<td id="podes"></td>
+				
+				</tr>
+				</tbody>
+				</table>
+				</div>
+				</div>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+
+
+<div class="relForm" style="background-color:#1A1A4F;">
+<form method="get">
+<div class="modal fade bd-example-modal-lg" id="relmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+   
+   
+  <div class="card">
+		<div class="card-block">
+			<table  class="table table-hover" style="color: black">
+				<thead>
+					<tr>
+						<th>Sensor Name</th>
+						<th>Connected Operator</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+				<tr th:each="relat :${rel.content}">
+				<td th:text="${relat.sensorName}"></td>
+				<td th:text="${relat.connector}"></td>
+		
+				</tr>
+				
+				</tbody>
+			</table>
+			<hr/>
+			</div>
+		</div>
+ 	
+ 	
+</div>
+</div>
+</div>
+</form>
+</div>
+
+
+<div class="seForm" >
+<form id="posForm" >
+<div class="modal fade bd-example-modal-lg" id="semodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+   
+   
+<div class="modal-header" style="color: black">
+        <h5 class="modal-title" id="exampleModalLabel">Make a post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="PostResultDiv" align="center"></div>
+      <div class="modal-body" style="color: black">
+      <div class="form-group" >
+            <label for="id" class="form-control-label">ID:</label>
+            <input type="text" class="form-control" id="pid" name="id" />
+          </div>
+          
+          <div class="form-group">
+            <label  class="form-control-label">Device ID:</label>
+            <input type="text" class="form-control" id="did" name="did" />
+          </div>
+      
+       <div class="form-group">
+            <label for="value" class="form-control-label">Status:</label>
+            <input type="text" class="form-control" id="value" name="value" />
+          </div>
+                
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="save" />
+      </div>
+					
+						
+    </div>
+  </div>
+</div>
+</form>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p class="alert alert-danger">
+      Are you sure you want to delete this device
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="" class="btn btn-danger" id="delRef">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>
