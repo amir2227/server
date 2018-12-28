@@ -1,7 +1,7 @@
 package com.pardis.server.services.mapservices;
 
-import com.pardis.model.DomainObject;
-import com.pardis.model.User;
+import com.pardis.server.model.DomainObject;
+import com.pardis.server.model.User;
 import com.pardis.server.services.UserService;
 import com.pardis.server.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
