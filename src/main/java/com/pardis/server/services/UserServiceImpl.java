@@ -2,9 +2,9 @@ package com.pardis.server.services;
 
 import com.pardis.server.model.User;
 
-import guru.springframework.repositories.UserRepository;
-import guru.springframework.services.UserService;
-import guru.springframework.services.security.EncryptionService;
+import com.pardis.server.repositories.UserRepository;
+import com.pardis.server.services.UserService;
+import com.pardis.server.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
