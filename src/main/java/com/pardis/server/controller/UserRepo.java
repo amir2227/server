@@ -1,4 +1,4 @@
-package guru.springframework.controllers;
+package com.pardis.server.controllers;
 
 
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import guru.springframework.domain.User;
+import com.pardis.server.model.User;
 
 @Repository
 @Transactional
