@@ -1,4 +1,4 @@
-package guru.springframework.controllers;
+package com.pardis.server.controllers;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import guru.springframework.dao.UserDAO;
-import guru.springframework.domain.User;
-import guru.springframework.validator.UserValidator;
+import com.pardis.server.dao.UserDAO;
+import com.pardis.server.model.User;
+import com.pardis.server.validator.UserValidator;
  
 @Controller
 public class MainController {
