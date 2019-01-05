@@ -22,6 +22,7 @@ import com.pardis.server.model.Device;
 import com.pardis.server.model.RFID;
 import com.pardis.server.model.Relation;
 import com.pardis.server.model.status;
+import com.pardis.server.model.User;
 
 @RestController
 public class DeviceJpaResource {
@@ -35,6 +36,11 @@ public class DeviceJpaResource {
 	
 	@Autowired
 	private RFIDRepo rfidRepo;
+	@Autowired
+	private UserRepo userRepo;
+	
+
+	
 	
 	@Autowired
 	private StatusRepository statusRepository;
@@ -77,9 +83,10 @@ public class DeviceJpaResource {
 	
 	//find statuses of a device by device id
 	@GetMapping(path="/jpa/device/{id}/post")
-	public List<status> RetrieveAllDevice(@PathVariable int id){
+	public List<status> RetrieveAllDevice(@PathVariable int id,String token){
+		List<User> userToken = userRepo.findByToken(token);
 		Optional<Device> deviceOptional= deviceRepository.findById(id);
-		if(!deviceOptional.isPresent()) {
+		if(!deviceOptional.isPresent() || userToken.isEmpty()) {
 			throw new DeviceNotFoundException("id-"+id);
 		}
 		//return statuses in json context
@@ -154,7 +161,7 @@ public class DeviceJpaResource {
 	@PostMapping(path="/jpa/device/{id}/post")
 	public ResponseEntity<Object> CreatStatus(@PathVariable int id,@RequestBody status Status){
 		
-		
+		 LocalTime t = LocalTime.now();
 		Optional<Device> deviceOptional= deviceRepository.findById(id);
 		if(!deviceOptional.isPresent()) {
 			throw new DeviceNotFoundException("id-"+id);
@@ -162,8 +169,32 @@ public class DeviceJpaResource {
 	Device device= deviceOptional.get();
 	//a list of relation that sensor device_id = id
 	List<Relation> Lrelation = relationRepository.findBydeviceId(id);
+//	List<Time> tt = timeRepo.findAll();
+//	
+//	if(!tt.isEmpty()) {
+//		
+//		
+//
+//		for(int j=0;j<tt.size();j++) {
+//			Time time = tt.get(j);
+//			Optional<Device> Ldevice = deviceRepository.findById(time.getDeviceId());
+//			Device dev = Ldevice.get();
+//			int sid = dev.getStatuses().get(0).getId();
+//			LocalTime lfTime = time.getFrom();
+//			LocalTime ltTime = time.getTo();
+//			LocalTime p = lfTime.plus(ltTime);
+//			if(lfTime.equals(LocalTime.now())) {
+//				status st = new status(sid,"on",dev,t);
+//				statusRepository.save(st);
+//			}else if(ltTime.equals(LocalTime.now())) {
+//				status st = new status(sid,"off",dev,t);
+//				statusRepository.save(st);
+//				
+//			}
+//		}
+//	}
 	//if exist relationship for device
-	if(!Lrelation.isEmpty()) {
+	 if(!Lrelation.isEmpty()) {
 		//get the device type
 		String type= device.getType();
 		//get the value
@@ -192,11 +223,11 @@ public class DeviceJpaResource {
 				  //if RFID exist
 				  if(!s.isEmpty()) {
 					  //set the operator device on
-				status st = new status(sid,"on",dev);
+				status st = new status(sid,"on",dev,t);
 				statusRepository.save(st);
 				  }else {
 					  //else set the operator device off
-						status st = new status(sid,"off",dev);
+						status st = new status(sid,"off",dev,t);
 						statusRepository.save(st);
 				  }
 				  break;
@@ -208,20 +239,20 @@ public class DeviceJpaResource {
 				  //if deg=1 , the result should be greater than the degree
 				  if(rel.getDeg()==1 && result > degree) {
 					  //set the operator device on
-				  status st = new status(sid,"on",dev);
+				  status st = new status(sid,"on",dev,t);
 				  System.out.println(st);
 				  System.out.println(dev);
 				  statusRepository.save(st);
 				//if deg=0 , the result should be less than the degree
 				  }else if(rel.getDeg()==0 && result < degree) {
 					//set the operator device on
-					  status st = new status(sid,"on",dev);
+					  status st = new status(sid,"on",dev,t);
 					  System.out.println(st);
 					  System.out.println(dev);
 					  statusRepository.save(st);
 				  }else {
 					  //else set the operator device off
-					  status st = new status(sid,"off",dev);
+					  status st = new status(sid,"off",dev,t);
 					  statusRepository.save(st);
 				  }
 				break;
@@ -230,19 +261,20 @@ public class DeviceJpaResource {
 				//if sensor device send "1"
 				  if(des.contains("1")) {
 					  //set the operator device on
-				  status st = new status(sid,"on",dev);
+				  status st = new status(sid,"on",dev,t);
 				  statusRepository.save(st);
 				  }else {
 					  //else set the operator device off
-					  status st = new status(sid,"off",dev);
+					  status st = new status(sid,"off",dev,t);
 					  statusRepository.save(st);
 				  }
 				break;
 			}
 		}
 	}
-				 
+	
 	Status.setDevice(device);
+	Status.setTime(t);
 	//save the status
 	statusRepository.save(Status);
 	
