@@ -1,4 +1,4 @@
-package com.pardis.server.controllers;
+package com.pardis.server.controller;
 
 
 import java.util.List;
