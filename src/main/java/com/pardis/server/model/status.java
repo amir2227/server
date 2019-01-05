@@ -18,14 +18,17 @@ public class status {
 	private Integer id;
 	
 	public String value;
+
+	private LocalTime time;
 	
 public status() {}
 	
-	public status(Integer id, String value, Device device) {
+	public status(Integer id, String value, Device device,LocalTime time) {
 		super();
 		this.id = id;
 		this.value = value;
 		this.device = device;
+		this.time = time;
 	}
 	
 	
@@ -51,9 +54,18 @@ public status() {}
 	public Device getDevice() {
 		return device;
 	}
+	
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
 	@Override
 	public String toString() {
-		return "status [id=" + id + ", value=" + value + "]";
+		return "status [id=" + id + ", value=" + value + ", time=" + time + "]";
 	}
 	
 }
