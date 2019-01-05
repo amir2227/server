@@ -46,15 +46,23 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     public void configureAuthManager(AuthenticationManagerBuilder authenticationManagerBuilder){
         authenticationManagerBuilder.authenticationProvider(authenticationProvider);
     }
-    @Override
+    
+   @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
            httpSecurity
-                .authorizeRequests().antMatchers("/","/device","/jpa/device/*","/console/*","/h2-console/**").permitAll()
+                .authorizeRequests().antMatchers("/","/device","/saveDevice","/members","/jpa/device/*","/register","/registerSuccessful","/console/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
+                .and()
+                .authorizeRequests().antMatchers("/device","/console/*").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .authorizeRequests().antMatchers("jpa/device/{id}/post/*").permitAll().anyRequest().anonymous()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                .and()
+                .rememberMe();
 
         httpSecurity.csrf().disable();
         httpSecurity.headers().frameOptions().disable();
