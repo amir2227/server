@@ -1,4 +1,4 @@
-package guru.springframework.validator;
+package com.pardis.server.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +7,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import guru.springframework.dao.UserDAO;
-import guru.springframework.domain.User;
+import com.pardis.server.dao.UserDAO;
+import com.pardis.server.model.User;
+
 
  
 @Component
