@@ -17,4 +17,6 @@ public interface DeviceRepository extends JpaRepository<Device, Integer> {
 
 	List<Device> findByName(String Name);
 	Optional<Device> findByRole(Integer Role);
+	Optional<Device> findById(Integer id);
+	void deleteById(Integer id);
 }
