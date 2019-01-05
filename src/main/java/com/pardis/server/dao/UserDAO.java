@@ -13,7 +13,7 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pardis.server.controllers.UserRepo;
+import com.pardis.server.controller.UserRepo;
 import com.pardis.server.model.Role;
 import com.pardis.server.model.User;
 import com.pardis.server.services.RoleService;
