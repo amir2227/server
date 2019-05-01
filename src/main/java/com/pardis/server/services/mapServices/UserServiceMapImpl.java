@@ -1,27 +1,20 @@
-package com.pardis.server.services;
+package com.pardis.server.services.mapServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.pardis.server.domain.DomainObject;
 import com.pardis.server.domain.User;
-import com.pardis.server.repositories.UserRepository;
 import com.pardis.server.services.security.EncryptionService;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 @Service
-@Profile("springdatajpa")
-public class UserServiceImpl implements UserService {
-
-    private UserRepository userRepository;
- 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+@Profile("map")
+public class UserServiceMapImpl extends AbstractMapService implements UserService {
 
     private EncryptionService encryptionService;
 
@@ -30,34 +23,42 @@ public class UserServiceImpl implements UserService {
         this.encryptionService = encryptionService;
     }
 
-
     @Override
-    public List<?> listAll() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add); //fun with Java 8
-        return users;
+    public List<DomainObject> listAll() {
+        return super.listAll();
     }
 
     @Override
     public User getById(Integer id) {
-        return userRepository.findOne(id);
+        return (User) super.getById(id);
     }
 
     @Override
     public User saveOrUpdate(User domainObject) {
+
         if(domainObject.getPassword() != null){
             domainObject.setEncryptedPassword(encryptionService.encryptString(domainObject.getPassword()));
         }
-        return userRepository.save(domainObject);
+
+        return (User) super.saveOrUpdate(domainObject);
     }
+
     @Override
-      @Transactional
-       public void delete(Integer id) {
-        userRepository.delete(id);
+    public void delete(Integer id) {
+        super.delete(id);
     }
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+
+        Optional returnUser =  domainMap.values().stream().filter(new Predicate<DomainObject>() {
+            @Override
+            public boolean test(DomainObject domainObject) {
+                User user = (User) domainObject;
+                return user.getUsername().equalsIgnoreCase(username);
+            }
+        }).findFirst();
+
+        return (User) returnUser.get();
     }
 }

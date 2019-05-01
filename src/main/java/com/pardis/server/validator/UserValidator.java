@@ -7,11 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.pardis.server.dao.UserDAO;
-import com.pardis.server.model.User;
+import com.pardis.server.domain.User;
 
-
- 
 @Component
 public class UserValidator implements Validator {
  

@@ -1,8 +1,13 @@
 package com.pardis.server.repositories;
 
-import com.pardis.server.model.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserRepository extends CrudRepository<User, Integer>{
+import com.pardis.server.domain.User;
+
+@Repository
+@Transactional
+public interface UserRepository extends JpaRepository<User, Integer>{
     User findByUsername(String username);
 }

@@ -1,11 +1,13 @@
 package com.pardis.server.converters;
 
-import com.pardis.server.model.User;
-import com.pardis.server.services.security.UserDetailsImpl;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.pardis.server.domain.User;
+import com.pardis.server.services.security.UserDetailsImpl;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

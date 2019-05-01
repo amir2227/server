@@ -1,0 +1,44 @@
+	
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+   <head>
+      <title>Successfully registered</title>
+      <style>
+        span {color: blue;}
+      </style>
+   </head>
+    
+   <body>
+    
+      <!-- Include _menu.html -->
+      <th:block th:include="/_menu"></th:block>  
+       
+      <h2>You have successfully registered!</h2>
+       
+      <div th:if="${flashUser != null}">
+         <ul>
+            <li>User Name: <span th:utext="${flashUser.username}">..</span></li>
+            <li>Email: <span th:utext="${flashUser.email}">..</span></li>
+         </ul>
+      </div>
+      
+    <form th:action="@{/giveRole}" method="POST">
+         <table>
+            <tr>
+               <td>Give Role</td>
+               <td><input type="text" name="role"/></td>
+               </tr>
+               <tr>
+               <td>&nbsp;</td>
+               <td>
+                  <input type="submit" value="Submit" />
+               </td>
+               <td>&nbsp;</td>
+            </tr>
+         </table>
+      </form>
+      
+
+       
+   </body>
+</html>

@@ -1,6 +1,6 @@
 package com.pardis.server.services;
 
-import com.pardis.server.model.User;
+import com.pardis.server.domain.User;
 
 public interface UserService extends CRUDService<User> {
 

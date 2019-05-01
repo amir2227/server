@@ -1,11 +1,11 @@
 package com.pardis.server.services;
 
-import com.pardis.server.model.Role;
-import com.pardis.server.repositories.RoleRepository;
-import com.pardis.server.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
+import com.pardis.server.domain.Role;
+import com.pardis.server.repositories.RoleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
