@@ -6,6 +6,3 @@ test
 2.Thymeleaf
 
 3.H2 Database
-
-
-https://www.filemail.com/d/uejqdjuysitqhye
